@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Pin from "./pin.jsx"
 
-class App extends React.Component {
+class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +24,7 @@ class App extends React.Component {
 
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
+    this.continueBowling = this.continueBowling.bind(this);
   }
 
   componentDidMount() {
@@ -46,16 +46,14 @@ class App extends React.Component {
   }
 
   continueBowling() {
-    for (let i = 0; i < this.state.pins.length; i++) {
-      if(this.state.pins[i].round === true) {
-        secondRoundSet.push(this.state.pins[i])
-      }
-    }
-
-    let randomPinIndex = Math.floor(Math.random() * secondRoundSet.length);
+    let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
     let newState = Object.assign({}, this.state);
-    newState.pins[randomPinIndex].target = true;
-    this.setState({ newState });
+    if(newState.pins[randomPinIndex].round === true) {
+      newState.pins[randomPinIndex].target = true;
+      this.setState({ newState });
+    } else {
+      this.continueBowling();
+    }
   }
   
   onClickStart() {
@@ -99,4 +97,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+export default Board;
