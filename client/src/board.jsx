@@ -1,5 +1,6 @@
 import React from "react";
-import Pin from "./pin.jsx"
+import ReactDOM from "react-dom";
+import Pin from "./pin.jsx";
 
 class Board extends React.Component {
   constructor(props) {
@@ -19,16 +20,16 @@ class Board extends React.Component {
       ],
       round: "start",
       subRound: null,
-      numberOfPinDown: 0,
+      numberOfPinDown: 0
     };
 
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
+    this.randomPinSelector = this.randomPinSelector.bind(this);
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   randomPinSelector() {
     let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
@@ -42,41 +43,41 @@ class Board extends React.Component {
     newState.pins[e.target.id].round = false;
     this.setState({
       newState
-    })
+    });
   }
 
   continueBowling() {
     let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
     let newState = Object.assign({}, this.state);
-    if(newState.pins[randomPinIndex].round === true) {
+    if (newState.pins[randomPinIndex].round === true) {
       newState.pins[randomPinIndex].target = true;
       this.setState({ newState });
     } else {
       this.continueBowling();
     }
   }
-  
+
   onClickStart() {
     if (this.state.round === "start") {
       this.setState({
         round: 1,
         subRound: "first"
-      })
+      });
     } else if (this.state.round === 10 && this.state.subRound === "second") {
       this.setState({
         round: "start",
         subRound: null
-      })
+      });
     } else if (this.state.subRound === "first") {
       this.setState({
         subRound: "second"
-      })
+      });
     } else {
       this.setState({
-        round: this.state.round += 1,
+        round: (this.state.round += 1),
         subRound: "first"
-      })
-    } 
+      });
+    }
   }
 
   render() {
@@ -84,8 +85,15 @@ class Board extends React.Component {
       <div className="bowling">
         <div>
           {this.state.pins.map((pin, i) => {
-            <Pin pin={pin}/>
-         })}
+            return (
+              <Pin
+                pin={pin}
+                updatePin={this.updatePin}
+                continueBowling={this.continueBowling}
+                key={i}
+              />
+            );
+          })}
         </div>
         <div>
           {/* <Score pins={{round: this.state.round, subRound: this.state.subRound, number: this.state.numberOfPinDown}}/> */}
@@ -97,4 +105,5 @@ class Board extends React.Component {
   }
 }
 
-export default Board;
+// export default Board;
+ReactDOM.render(<Board />, document.getElementById("app"));
