@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import Pin from "./pin.jsx";
 
 class App extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class App extends React.Component {
       subRound: null
     };
     this.onClickStart = this.onClickStart.bind(this);
+    this.randomPinSelector = this.randomPinSelector.bind(this);
   }
 
   componentDidMount() {
@@ -40,28 +42,35 @@ class App extends React.Component {
       this.setState({
         round: 1,
         subRound: "first"
-      })
+      });
     } else if (this.state.round === 10 && this.state.subRound === "second") {
       this.setState({
         round: "start",
         subRound: null
-      })
+      });
     } else if (this.state.subRound === "first") {
       this.setState({
         subRound: "second"
-      })
+      });
     } else {
       this.setState({
-        round: this.state.round += 1,
+        round: (this.state.round += 1),
         subRound: "first"
-      })
-    } 
+      });
+    }
   }
 
   render() {
     return (
       <div className="bowling">
-        <div>{this.state.pins.map((pin, i) => {})}</div>
+        <div>
+          {this.state.pins.map((pin, i) => {
+            console.log("hit here");
+            return (
+              <Pin pin={pin} key={i} continueBowling={this.randomPinSelector} />
+            ); //temp
+          })}
+        </div>
         <div>
           <button onClick={this.onClickStart}>{this.state.round}</button>
           <div>you are on : {this.state.subRound}</div>
