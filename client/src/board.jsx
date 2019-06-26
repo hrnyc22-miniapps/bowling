@@ -1,7 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import Pin from "./pin.jsx"
 
-class App extends React.Component {
+class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,23 +18,44 @@ class App extends React.Component {
         { pinNumber: 10, round: true, target: false }
       ],
       round: "start",
-      subRound: null
+      subRound: null,
+      numberOfPinDown: 0,
     };
+
     this.onClickStart = this.onClickStart.bind(this);
+    this.updatePin = this.updatePin.bind(this);
+    this.continueBowling = this.continueBowling.bind(this);
   }
 
   componentDidMount() {
-    // this.randomPinSelector();
   }
 
   randomPinSelector() {
     let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
     let newState = Object.assign({}, this.state);
     newState.pins[randomPinIndex].target = true;
-
     this.setState({ newState });
   }
 
+  updatePin(e) {
+    let newState = Object.assign({}, this.state);
+    newState.pins[e.target.id].round = false;
+    this.setState({
+      newState
+    })
+  }
+
+  continueBowling() {
+    let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
+    let newState = Object.assign({}, this.state);
+    if(newState.pins[randomPinIndex].round === true) {
+      newState.pins[randomPinIndex].target = true;
+      this.setState({ newState });
+    } else {
+      this.continueBowling();
+    }
+  }
+  
   onClickStart() {
     if (this.state.round === "start") {
       this.setState({
@@ -61,8 +82,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="bowling">
-        <div>{this.state.pins.map((pin, i) => {})}</div>
         <div>
+          {this.state.pins.map((pin, i) => {
+            <Pin pin={pin}/>
+         })}
+        </div>
+        <div>
+          {/* <Score pins={{round: this.state.round, subRound: this.state.subRound, number: this.state.numberOfPinDown}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
           <div>you are on : {this.state.subRound}</div>
         </div>
@@ -71,4 +97,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+export default Board;
