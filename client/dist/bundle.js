@@ -90,6 +90,7 @@
 /*!******************************!*\
   !*** ./client/src/index.jsx ***!
   \******************************/
+<<<<<<< HEAD
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -246,9 +247,12 @@ eval("\n\nif (false) {} else {\n  module.exports = __webpack_require__(/*! ./cjs
   !*** (webpack)/buildin/global.js ***!
   \***********************************/
 /*! no static exports found */
+=======
+/*! exports provided: default */
+>>>>>>> 379159ae80b9de2889c00202789913b6e1e99052
 /***/ (function(module, exports) {
 
-eval("var g; // This works in non-strict mode\n\ng = function () {\n  return this;\n}();\n\ntry {\n  // This works if eval is allowed (see CSP)\n  g = g || new Function(\"return this\")();\n} catch (e) {\n  // This works if the window reference is available\n  if (typeof window === \"object\") g = window;\n} // g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\n\nmodule.exports = g;\n\n//# sourceURL=webpack:///(webpack)/buildin/global.js?");
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nError: ENOENT: no such file or directory, open '/Users/ohbrian/Desktop/bowling/client/src/index.jsx'\");\n\n//# sourceURL=webpack:///./client/src/index.jsx?");
 
 /***/ })
 
