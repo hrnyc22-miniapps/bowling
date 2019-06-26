@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
 
 class Board extends React.Component {
@@ -25,6 +26,7 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
+    this.randomPinSelector = this.randomPinSelector.bind(this);
   }
 
   componentDidMount() {}
@@ -83,7 +85,14 @@ class Board extends React.Component {
       <div className="bowling">
         <div>
           {this.state.pins.map((pin, i) => {
-            <Pin pin={pin} />;
+            return (
+              <Pin
+                pin={pin}
+                updatePin={this.updatePin}
+                continueBowling={this.continueBowling}
+                key={i}
+              />
+            );
           })}
         </div>
         <div>
@@ -96,4 +105,5 @@ class Board extends React.Component {
   }
 }
 
-export default Board;
+// export default Board;
+ReactDOM.render(<Board />, document.getElementById("app"));
