@@ -29,13 +29,6 @@ class Pin extends React.Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      <div className="pin-container" id={this.props.pinNumber}>
-        {this.props.round && this.props.target ? (
-          <div className="pin-target" onClick={this.onClick} />
-        ) : (
-          <div className="pin" onClick={this.onClick} />
-=======
       <div className="pin-container">
         {this.props.pin.round && this.props.pin.target ? (
           <div
@@ -53,7 +46,6 @@ class Pin extends React.Component {
               this.onClick(e);
             }}
           />
->>>>>>> f99a548d400235ed223dfaf176c577cf3e876347
         )}
       </div>
     );
