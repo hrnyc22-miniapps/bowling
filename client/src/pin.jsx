@@ -20,16 +20,16 @@ class Pin extends React.Component {
   }
 
   onClick(e) {
-    console.log("this is the timer props", this.props.timer);
+    // console.log("this is the timer props", this.props.timer);
     if (this.state.inTime) {
-      console.log("continue bowling");
+      // console.log("continue bowling");
       this.props.continueBowling(e);
       this.props.updatePin(e, true);
       setTimeout(() => {
         this.setState({ inTime: true });
       }, this.props.timer);
     } else {
-      console.log("missed it, next round!");
+      // console.log("missed it, next round!");
       this.props.updatePin(e, false);
       this.setState({ inTime: true });
     }
