@@ -1,118 +1,54 @@
-.scoreTable {
-  display: grid;
-  grid-template-columns: repeat(22, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  border-radius: 10px;
+.board {
+  text-align: center;
 }
 
-.scoreTable-header1 {
-  grid-column: 1/3;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
-} 
-
-.scoreTable-header2 {
-  grid-column: 3/5;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
+.pin-container {
+  width: 2vh;
+  display: inline-block;
+  height: 4vh;
+  margin: 4vh;
 }
 
-.scoreTable-header3 {
-  grid-column: 5/7;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
+.bowling-lane {
+  border: 1px solid black;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-bottom: 20%;
+}
+.pin {
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 4vh;
+  height: 4vh;
+  box-shadow: 2px 2px black;
 }
 
-.scoreTable-header4 {
-  grid-column: 7/9;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
+.pin-target {
+  background-color: yellow;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 4vh;
+  height: 4vh;
+  box-shadow: 2px 2px black;
 }
 
-.scoreTable-header5 {
-  grid-column: 9/11;
-  grid-row: 1;
-  border: 10px black;
+.start {
+  margin-top: 10px;
   text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
 }
 
-.scoreTable-header6 {
-  grid-column: 11/13;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
+button {
+  padding: 10px;
+  font-size: 20px;
 }
 
-.scoreTable-header7 {
-  grid-column: 13/15;
-  grid-row: 1;
-  border: 10px black;
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 6px;
   text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
+  margin-top: 10px;
 }
-
-.scoreTable-header8 {
-  grid-column: 15/17;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
-}
-
-.scoreTable-header9 {
-  grid-column: 17/19;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
-}
-
-.scoreTable-header10 {
-  grid-column: 19/21;
-  grid-row: 1;
-  border: 10px black;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
-}
-
-.total {
-  grid-column: 21/23;
-  grid-row: 1/4;
-  text-align: center;
-  background-color: #80cbc4;
-  border: 1px solid #fff;
-}
-
-.total-element {
-  grid-column: 21/23;
-  grid-row: 3/4;
-  text-align: center;
-  background-color: #80cbc4;
-}
-
-.scoreTable-elements {
-  grid-row: 3/4;
-  text-align: center;
-  background-color: #80cbc4;
-}
-
