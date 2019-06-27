@@ -22,8 +22,6 @@ class Pin extends React.Component {
     if (inTime) {
       this.props.continueBowling(e);
       this.props.updatePin(e);
-    } else {
-      this.props.endRound();
     }
   }
 
