@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
-import Scoreboard from "./scoreboard.jsx";
 
 const board = [
   { pinNumber: 1, round: true, target: false },
@@ -32,6 +31,7 @@ class Board extends React.Component {
         { pinNumber: 9, round: true, target: false },
         { pinNumber: 10, round: true, target: false }
       ],
+      timer: 2750,
       round: "start",
       subRound: null
     };
@@ -74,7 +74,9 @@ class Board extends React.Component {
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
-    this.setState({ newState });
+    let temp = newState.timer;
+    newState.timer = temp - 250;
+    this.setState(newState);
   }
 
   onClickStart() {
@@ -95,7 +97,8 @@ class Board extends React.Component {
     } else if (this.state.subRound === 1) {
       this.setState(
         {
-          subRound: 2
+          subRound: 2,
+          timer: 1000
         },
         () => this.continueBowling()
       );
@@ -104,7 +107,8 @@ class Board extends React.Component {
         {
           round: (this.state.round += 1),
           subRound: 1,
-          pins: board
+          pins: board,
+          timer: 2750
         },
         () => this.continueBowling()
       );
@@ -122,24 +126,28 @@ class Board extends React.Component {
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[1]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[2]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[3]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
             </div>
             <div>
@@ -148,18 +156,21 @@ class Board extends React.Component {
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[5]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[6]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
             </div>
             <div>
@@ -168,12 +179,14 @@ class Board extends React.Component {
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
               <Pin
                 pin={this.state.pins[8]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
             </div>
             <div>
@@ -182,6 +195,7 @@ class Board extends React.Component {
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
+                timer={this.state.timer}
               />
             </div>
           </div>
@@ -192,9 +206,6 @@ class Board extends React.Component {
           <div>
             {this.state.subRound ? "you are on: " + this.state.subRound : null}
           </div>
-        </div>
-        <div>
-          <Scoreboard round={this.state.round} subRound={this.state.subRound} pins={this.state.pins}/>
         </div>
       </div>
     );
