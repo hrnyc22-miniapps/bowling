@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
+import Scoreboard from "./scoreboard.jsx"
 
 const board = [
   { pinNumber: 1, round: true, target: false },
@@ -42,7 +43,6 @@ class Board extends React.Component {
   }
 
   updatePin(e, inTime) {
-    console.log("******update pin******");
     if (inTime) {
       let newState = Object.assign({}, this.state);
       newState.pins[e.target.id - 1].round = false;
@@ -73,7 +73,6 @@ class Board extends React.Component {
     }
     let randomPinIndex = Math.floor(Math.random() * leftPin.length);
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
-    console.log(selectedPinNumber);
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
     this.setState({ newState });
@@ -116,25 +115,85 @@ class Board extends React.Component {
   render() {
     return (
       <div className="bowling">
-        <div>
-          {this.state.pins.map((pin, i) => {
-            return (
+        <div className="board">
+            <div>
               <Pin
-                key={i}
-                pin={pin}
+                pin={this.state.pins[0]}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
                 subRound={this.state.subRound}
               />
-            );
-          })}
+               <Pin
+                pin={this.state.pins[1]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+               <Pin
+                pin={this.state.pins[2]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+               <Pin
+                pin={this.state.pins[3]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+              </div>
+              <div>
+               <Pin
+                pin={this.state.pins[4]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+               <Pin
+                pin={this.state.pins[5]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+               <Pin
+                pin={this.state.pins[6]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+              </div>
+              <div>
+               <Pin
+                pin={this.state.pins[7]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+               <Pin
+                pin={this.state.pins[8]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+              </div>
+              <div>
+               <Pin
+                pin={this.state.pins[9]}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                subRound={this.state.subRound}
+              />
+              </div>
         </div>
-        <div>
+        <div className="start">
           {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
           <div>
             {this.state.subRound ? "you are on: " + this.state.subRound : null}
           </div>
+        </div>
+        <div className="score">
+          <Scoreboard />
         </div>
       </div>
     );
