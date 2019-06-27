@@ -1,13 +1,18 @@
 import React from "react";
-
+// round subRound pins
 class Scoreboard extends React.Component {
   constructor(props) {
     super(props);
-
   }
 
   countPinDown() {
-    
+    let pinDown = 0;
+    for (let i = 0; i < 10; i++) {
+      if (this.props.pins[i].round === true) {
+        pinDown += 1;
+      }
+    }
+    return pinDown;
   }
 
   render() {
@@ -49,12 +54,12 @@ class Scoreboard extends React.Component {
               <td>0</td>
               <td>0</td>
               <td>0</td>
-              <td></td>
+              <td />
             </tr>
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
 
