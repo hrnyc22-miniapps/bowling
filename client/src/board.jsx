@@ -31,7 +31,7 @@ class Board extends React.Component {
         { pinNumber: 9, round: true, target: false },
         { pinNumber: 10, round: true, target: false }
       ],
-      timer: 5000,
+      timer: 2750,
       round: "start",
       subRound: null
     };
@@ -75,7 +75,7 @@ class Board extends React.Component {
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
     let temp = newState.timer;
-    newState.timer = temp - 500;
+    newState.timer = temp - 250;
     this.setState(newState);
   }
 
@@ -98,7 +98,7 @@ class Board extends React.Component {
       this.setState(
         {
           subRound: 2,
-          timer: 2500
+          timer: 1000
         },
         () => this.continueBowling()
       );
@@ -108,7 +108,7 @@ class Board extends React.Component {
           round: (this.state.round += 1),
           subRound: 1,
           pins: board,
-          timer: 5000
+          timer: 2750
         },
         () => this.continueBowling()
       );
