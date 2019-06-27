@@ -98,10 +98,15 @@ class Board extends React.Component {
       this.setState(
         {
           subRound: 2,
-          timer: 1000
+          timer: 1750
         },
         () => this.continueBowling()
       );
+      this.props.renderTotalPin({
+        board: this.state.pins,
+        sub_round: this.state.subRound,
+        round: this.state.round
+      })
     } else {
       this.setState(
         {
@@ -112,6 +117,11 @@ class Board extends React.Component {
         },
         () => this.continueBowling()
       );
+      this.props.renderTotalPin({
+        board: this.state.pins,
+        sub_round: this.state.subRound,
+        round: this.state.round
+      })
     }
   }
 
@@ -201,14 +211,15 @@ class Board extends React.Component {
           </div>
         </div>
         <div className="start">
-          {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
           <button onClick={this.onClickStart}>
             {this.state.round === "start"
               ? "START"
               : "ROUND " + this.state.round}
           </button>
           <div>
-            {this.state.subRound ? "You Are On: sub-round " + this.state.subRound : null}
+            {this.state.subRound
+              ? "You Are On: sub-round " + this.state.subRound
+              : null}
           </div>
         </div>
       </div>
