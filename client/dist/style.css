@@ -103,6 +103,13 @@
   border: 1px solid #fff;
 }
 
+.total-element {
+  grid-column: 21/23;
+  grid-row: 3/4;
+  text-align: center;
+  background-color: #80cbc4;
+}
+
 .scoreTable-elements {
   grid-row: 3/4;
   text-align: center;
