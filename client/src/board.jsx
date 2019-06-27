@@ -1,19 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
-
-const board = [
-  { pinNumber: 1, round: true, target: false },
-  { pinNumber: 2, round: true, target: false },
-  { pinNumber: 3, round: true, target: false },
-  { pinNumber: 4, round: true, target: false },
-  { pinNumber: 5, round: true, target: false },
-  { pinNumber: 6, round: true, target: false },
-  { pinNumber: 7, round: true, target: false },
-  { pinNumber: 8, round: true, target: false },
-  { pinNumber: 9, round: true, target: false },
-  { pinNumber: 10, round: true, target: false }
-];
 
 class Board extends React.Component {
   constructor(props) {
@@ -31,7 +17,7 @@ class Board extends React.Component {
         { pinNumber: 9, round: true, target: false },
         { pinNumber: 10, round: true, target: false }
       ],
-      timer: 2750,
+      timer: 2500,
       round: "start",
       subRound: null
     };
@@ -45,15 +31,11 @@ class Board extends React.Component {
     if (inTime) {
       let newState = Object.assign({}, this.state);
       newState.pins[e.target.id - 1].round = false;
-      this.setState({
-        newState
-      });
+      this.setState(newState);
     } else {
       let newState = Object.assign({}, this.state);
       newState.pins[e.target.id - 1].target = false;
-      this.setState({
-        newState
-      });
+      this.setState(newState);
     }
   }
 
@@ -74,8 +56,8 @@ class Board extends React.Component {
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
-    let temp = newState.timer;
-    newState.timer = temp - 250;
+    newState.timer = newState.timer - 250;
+    console.log(newState.timer);
     this.setState(newState);
   }
 
@@ -90,7 +72,18 @@ class Board extends React.Component {
       );
     } else if (this.state.round === 10 && this.state.subRound === 2) {
       this.setState({
-        pins: board,
+        pins: [
+          { pinNumber: 1, round: true, target: false },
+          { pinNumber: 2, round: true, target: false },
+          { pinNumber: 3, round: true, target: false },
+          { pinNumber: 4, round: true, target: false },
+          { pinNumber: 5, round: true, target: false },
+          { pinNumber: 6, round: true, target: false },
+          { pinNumber: 7, round: true, target: false },
+          { pinNumber: 8, round: true, target: false },
+          { pinNumber: 9, round: true, target: false },
+          { pinNumber: 10, round: true, target: false }
+        ],
         round: "start",
         subRound: null
       });
@@ -106,14 +99,25 @@ class Board extends React.Component {
         board: this.state.pins,
         sub_round: this.state.subRound,
         round: this.state.round
-      })
-    } else {
+      });
+    } else if (this.state.subRound === 2) {
       this.setState(
         {
           round: (this.state.round += 1),
           subRound: 1,
-          pins: board,
-          timer: 2750
+          pins: [
+            { pinNumber: 1, round: true, target: false },
+            { pinNumber: 2, round: true, target: false },
+            { pinNumber: 3, round: true, target: false },
+            { pinNumber: 4, round: true, target: false },
+            { pinNumber: 5, round: true, target: false },
+            { pinNumber: 6, round: true, target: false },
+            { pinNumber: 7, round: true, target: false },
+            { pinNumber: 8, round: true, target: false },
+            { pinNumber: 9, round: true, target: false },
+            { pinNumber: 10, round: true, target: false }
+          ],
+          timer: 2500
         },
         () => this.continueBowling()
       );
@@ -121,7 +125,7 @@ class Board extends React.Component {
         board: this.state.pins,
         sub_round: this.state.subRound,
         round: this.state.round
-      })
+      });
     }
   }
 
