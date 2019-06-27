@@ -1,9 +1,14 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 
+
+
+
+
+
 const Score = () => {
   const [totalPin, updateTotalPins] = useState(0);
-  const [roundRecords, setRoundRecords] = useState([{round: 1, sub_round: 1, pins: 10}, {round: 1, sub_round: 2, pins: 0}, {round: 2, sub_round: 1, pins: 1}]);
+  const [roundRecords, setRoundRecords] = useState([{round: 1, sub_round: 1, pins: 10}]);
   const [trackStrike, setTrackStrike] = useState(true);
   const [trackSpare, setTrackSpare] = useState(false);
 
@@ -13,37 +18,77 @@ const Score = () => {
     { pinNumber: 3, round: false, target: false },
     { pinNumber: 4, round: false, target: false },
     { pinNumber: 5, round: false, target: false },
-    { pinNumber: 6, round: true, target: false },
+    { pinNumber: 6, round: false, target: false },
     { pinNumber: 7, round: false, target: false },
     { pinNumber: 8, round: false, target: false },
     { pinNumber: 9, round: false, target: false },
     { pinNumber: 10, round: false, target: false }],
-    round: 2,
+    round: 1,
     sub_round: 2,
   }
 
-  let rendertotalPin = (obj) => {
-    let count = 0;
+//   let rendertotalPin = (obj) => {
+//     let count = 0;
+//     let output = {};
+//     for (var i = 0; i < obj.board.length; i++) {
+//       if (obj.sub_round === 1 && obj.board[i].round === false) {
+//         count += 1;
+//       } 
+//     }
+//     output.round = obj.round;
+//     output.sub_round = obj.sub_round;
+//     if (roundRecords.length > 0 && obj.sub_round === 1 && count === 10) {//strike
+//     setRoundRecords([...roundRecords, {round: obj.round, sub_round: obj.subround, pins: 'X'}])
+//     count += 10;
+//     } else if (roundRecords.length > 0 && obj.sub_round === 2 && roundRecords[roundRecords.length-1].pins + count === 10 && count !== 0) { //spare
+//     setRoundRecords([...roundRecords, {round: obj.round, sub_round: obj.subround, pins: '/'}]);
+//     count += 10;
+//     } else if (roundRecords.length < 20 && obj.sub_round === 2) {
+//     output.pins = count - roundRecords[roundRecords.length-1].pins;
+//     setRoundRecords([...roundRecords, output])
+//     }
+//     updateTotalPins(totalPin + count);
+// }
+
+  let renderTotalPin = (obj) => {
     let output = {};
+    output.round = obj.round;
+    output.sub_round = obj.sub_round;
+    let count = 0;
     for (var i = 0; i < obj.board.length; i++) {
       if (obj.board[i].round === false) {
         count += 1;
       }
     }
-    output.round = obj.round;
-    output.sub_round = obj.sub_round;
-    output.pins = count;
-    if (roundRecords.length > 0 && obj.sub_round === 1 && count === 10) {//strike
-    setRoundRecords([...roundRecords, {round: obj.round, sub_round: obj.subround, pins: 'X'}])
-    count += 10;
-    } else if (roundRecords.length > 0 && obj.sub_round === 2 && roundRecords[roundRecords.length-1].pins + count === 10 && count !== 0) { //spare
-    setRoundRecords([...roundRecords, {round: obj.round, sub_round: obj.subround, pins: '/'}]);
-    count += 10;
-    } else if (roundRecords.length < 20) {
-    setRoundRecords([...roundRecords, output])
+
+    //determine pin count/symbol:
+    if (obj.sub_round === 1) { //for the first sub_round
+      if (count === 10) { //strike was hit
+        output.pins = 10;
+        updateTotalPins(totalPin + 10 + count);
+      } else {
+        output.pins = count;
+        updateTotalPins(totalPin + count);
+      }
+    } else { //second sub_round
+      if (count === roundRecords[roundRecords.length-1].pins) { //when there are no new pins hit or a strike was hit
+        if (count === 10) { //strike was hit in the sub_round before
+          output.pins = 0;
+        } else { // no pins were hit
+          output.pins = 0;
+        }
+      } else { //new pins were hit in the second sub_round
+        let newPins = count - roundRecords[roundRecords.length-1].pins;
+        output.pins = newPins;
+       if (count === 10) {
+          updateTotalPins(totalPin + 10 + newPins);
+        } else { 
+          updateTotalPins(totalPin + newPins);
+        }
+      }
     }
-    updateTotalPins(totalPin + count);
-}
+    setRoundRecords([...roundRecords, output]);
+  }
 return (
     <div className="scoreTable">
       <div className="scoreTable-header1">Round 1</div>
@@ -57,7 +102,7 @@ return (
       <div className="scoreTable-header9">Round 9</div>
       <div className="scoreTable-header10">Round 10</div>
       <div className="total">Total</div>
-      <button onClick={()=>{rendertotalPin(obj1);}}></button>
+      <button onClick={()=>{renderTotalPin(obj1)}}></button>
       {roundRecords.map((round, i) => {
         return (<div key={i} className="scoreTable-elements">{round.pins}</div>)
       }
