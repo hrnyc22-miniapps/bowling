@@ -9,6 +9,12 @@
   margin: 4vh;
 }
 
+.bowling-lane {
+  border: 1px solid black;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding-bottom: 20%;
+}
 .pin {
   background-color: white;
   border-radius: 50%;
@@ -28,7 +34,13 @@
 }
 
 .start {
+  margin-top: 10px;
   text-align: center;
+}
+
+button {
+  padding: 10px;
+  font-size: 20px;
 }
 
 table,
