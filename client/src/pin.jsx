@@ -11,12 +11,12 @@ class Pin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.pin.target) {
+    if (this.props.pin.round && this.props.pin.target && this.state.inTime) {
       console.log("setting the timeout");
       setTimeout(() => {
         console.log("setting time for pin to false", this.props.pin.pinNumber);
         this.setState({ inTime: false });
-      }, 2000);
+      }, 3000);
     }
   }
 
@@ -32,7 +32,7 @@ class Pin extends React.Component {
       setTimeout(() => {
         console.log("resetting time for pin to true", this.props.pin.pinNumber);
         this.setState({ inTime: false });
-      }, 2000);
+      }, 3000);
     }
   }
 
