@@ -30,12 +30,20 @@ class Board extends React.Component {
 
   componentDidMount() {}
 
-  updatePin(e) {
-    let newState = Object.assign({}, this.state);
-    newState.pins[e.target.id].round = false;
-    this.setState({
-      newState
-    });
+  updatePin(e, inTime) {
+    if (inTime) {
+      let newState = Object.assign({}, this.state);
+      newState.pins[e.target.id - 1].round = false;
+      this.setState({
+        newState
+      });
+    } else {
+      let newState = Object.assign({}, this.state);
+      newState.pins[e.target.id - 1].target = false;
+      this.setState({
+        newState
+      });
+    }
   }
 
   continueBowling() {
@@ -100,7 +108,9 @@ class Board extends React.Component {
             { pinNumber: 10, round: true, target: false }
           ]
         },
-        () => this.continueBowling()
+        () => {
+          this.continueBowling();
+        }
       );
     }
   }
