@@ -3,6 +3,10 @@
   padding-right: 15px;
 }
 
+.bowling {
+  margin-top: 50px;
+}
+
 .pin-container {
   width: 2vh;
   display: inline-block;
@@ -167,6 +171,7 @@ td {
   grid-row: 3/4;
   text-align: center;
   background-color: #80cbc4;
+  margin: auto;  
 }
 
 .scoreTable-elements {
