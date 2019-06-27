@@ -19,7 +19,18 @@ class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pins: board,
+      pins: [
+        { pinNumber: 1, round: true, target: false },
+        { pinNumber: 2, round: true, target: false },
+        { pinNumber: 3, round: true, target: false },
+        { pinNumber: 4, round: true, target: false },
+        { pinNumber: 5, round: true, target: false },
+        { pinNumber: 6, round: true, target: false },
+        { pinNumber: 7, round: true, target: false },
+        { pinNumber: 8, round: true, target: false },
+        { pinNumber: 9, round: true, target: false },
+        { pinNumber: 10, round: true, target: false }
+      ],
       round: "start",
       subRound: null,
       numberOfPinDown: 0
@@ -50,12 +61,16 @@ class Board extends React.Component {
   continueBowling() {
     let leftPin = [];
     for (let i = 0; i < this.state.pins.length; i++) {
-      if (this.state.pins[i].round === true) {
+      if (this.state.pins[i].round === true && this.state.pins[i].target === false) {
         leftPin.push(this.state.pins[i]);
       }
     }
+    if (leftPin.length === 0) {
+      return;
+    }
     let randomPinIndex = Math.floor(Math.random() * leftPin.length);
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
+    console.log(selectedPinNumber)
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
     this.setState({ newState });
