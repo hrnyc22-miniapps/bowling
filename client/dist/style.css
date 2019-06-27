@@ -1,26 +1,29 @@
 .board {
   text-align: center;
+  padding-right: 15px;
 }
 
 .pin-container {
   width: 2vh;
   display: inline-block;
-  height: 4vh;
-  margin: 4vh;
+  height: 1vh;
+  margin: 3vh;
 }
 
 .bowling-lane {
+  text-align: center;
+  width: 330px;
   border: 1px solid black;
-  margin-left: 30%;
-  margin-right: 30%;
-  padding-bottom: 20%;
+  padding-bottom: 500px;
+  margin: auto;
+  background: url("/bowling.png")
 }
 .pin {
   background-color: white;
   border-radius: 50%;
   border: 1px solid black;
-  width: 4vh;
-  height: 4vh;
+  width: 3vh;
+  height: 3vh;
   box-shadow: 2px 2px black;
 }
 
@@ -28,8 +31,8 @@
   background-color: yellow;
   border-radius: 50%;
   border: 1px solid black;
-  width: 4vh;
-  height: 4vh;
+  width: 3vh;
+  height: 3vh;
   box-shadow: 2px 2px black;
 }
 
