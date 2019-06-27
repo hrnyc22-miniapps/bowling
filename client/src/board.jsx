@@ -202,9 +202,13 @@ class Board extends React.Component {
         </div>
         <div className="start">
           {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
-          <button onClick={this.onClickStart}>{this.state.round}</button>
+          <button onClick={this.onClickStart}>
+            {this.state.round === "start"
+              ? "START"
+              : "ROUND " + this.state.round}
+          </button>
           <div>
-            {this.state.subRound ? "you are on: " + this.state.subRound : null}
+            {this.state.subRound ? "You Are On: sub-round " + this.state.subRound : null}
           </div>
         </div>
       </div>
