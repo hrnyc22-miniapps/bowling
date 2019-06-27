@@ -68,7 +68,7 @@ class Board extends React.Component {
       );
     } else if (this.state.round === 10 && this.state.subRound === "second") {
       this.setState({
-        pin: [
+        pins: [
           { pinNumber: 1, round: true, target: false },
           { pinNumber: 2, round: true, target: false },
           { pinNumber: 3, round: true, target: false },
@@ -95,7 +95,7 @@ class Board extends React.Component {
         {
           round: (this.state.round += 1),
           subRound: "first",
-          pin: [
+          pins: [
             { pinNumber: 1, round: true, target: false },
             { pinNumber: 2, round: true, target: false },
             { pinNumber: 3, round: true, target: false },
@@ -108,9 +108,7 @@ class Board extends React.Component {
             { pinNumber: 10, round: true, target: false }
           ]
         },
-        () => {
-          this.continueBowling();
-        }
+        () => this.continueBowling()
       );
     }
   }
