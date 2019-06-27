@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
-import Scoreboard from "./scoreboard.jsx";
 
 const board = [
   { pinNumber: 1, round: true, target: false },
@@ -74,7 +73,7 @@ class Board extends React.Component {
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
-    this.setState({ newState });
+    this.setState(newState);
   }
 
   onClickStart() {
@@ -188,13 +187,14 @@ class Board extends React.Component {
         </div>
         <div className="start">
           {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
-          <button onClick={this.onClickStart}>{this.state.round}</button>
+          <button onClick={this.onClickStart}>
+            {this.state.round === "start"
+              ? "START"
+              : "ROUND " + this.state.round}
+          </button>
           <div>
-            {this.state.subRound ? "you are on: " + this.state.subRound : null}
+            {this.state.subRound ? "You Are On: sub-round " + this.state.subRound : null}
           </div>
-        </div>
-        <div>
-          <Scoreboard round={this.state.round} subRound={this.state.subRound} pins={this.state.pins}/>
         </div>
       </div>
     );
