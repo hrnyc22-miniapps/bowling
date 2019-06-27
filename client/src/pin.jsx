@@ -11,6 +11,7 @@ class Pin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log(this.state.inTime);
     if (this.props.pin.round && this.props.pin.target && this.state.inTime) {
       setTimeout(() => {
         console.log("setting time for pin to false", this.props.pin.pinNumber);
@@ -24,13 +25,16 @@ class Pin extends React.Component {
       console.log("continue bowling");
       this.props.continueBowling(e);
       this.props.updatePin(e, true);
+      setTimeout(() => {
+        this.setState({ inTime: true });
+      }, 3000);
     } else {
       console.log("missed it, next round!");
       this.props.updatePin(e, false);
-      setTimeout(() => {
-        console.log("resetting time for pin to true", this.props.pin.pinNumber);
-        this.setState({ inTime: true });
-      }, 3000);
+      // setTimeout(() => {
+      //   console.log("resetting time for pin to true", this.props.pin.pinNumber);
+      this.setState({ inTime: true });
+      // }, 3000);
     }
   }
 
