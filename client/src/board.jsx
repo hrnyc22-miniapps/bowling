@@ -50,7 +50,10 @@ class Board extends React.Component {
   continueBowling() {
     let leftPin = [];
     for (let i = 0; i < this.state.pins.length; i++) {
-      if (this.state.pins[i].round === true) {
+      if (
+        this.state.pins[i].round === true &&
+        this.state.pins[i].target === false
+      ) {
         leftPin.push(this.state.pins[i]);
       }
     }
@@ -113,7 +116,9 @@ class Board extends React.Component {
         <div>
           {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
-          <div>{this.state.subRound ? "you are on: "+ this.state.subRound : null}</div>
+          <div>
+            {this.state.subRound ? "you are on: " + this.state.subRound : null}
+          </div>
         </div>
       </div>
     );
