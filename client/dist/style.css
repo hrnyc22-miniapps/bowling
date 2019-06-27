@@ -1,5 +1,10 @@
+.board {
+  text-align: center;
+}
+
 .pin-container {
   width: 2vh;
+  display: inline-block;
   height: 2vh;
   margin: 2vh;
 }
@@ -19,3 +24,16 @@
   outline: 2px red;
   box-shadow: 2px black;
 }
+
+.start {
+  text-align: center;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 6px;
+  text-align: center;
+  margin-top: 10px;
+}
+

@@ -11,7 +11,6 @@ class Pin extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.state.inTime);
     if (this.props.pin.round && this.props.pin.target && this.state.inTime) {
       setTimeout(() => {
         console.log("setting time for pin to false", this.props.pin.pinNumber);
