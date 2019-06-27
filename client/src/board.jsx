@@ -28,9 +28,29 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
+<<<<<<< HEAD
+    this.countPinNumber = this.countPinNumber.bind(this);
   }
 
+  componentDidMount() {}
+
+  countPinNumber() {
+    let pinDown = 0;
+    for (let i = 0; i < this.state.pins.length; i++) {
+      if (this.state.pins[i].round === false) {
+        pinDown += 1;
+      }
+    }
+    console.log("Number of Pin Down:", pinDown);
+    return pinDown;
+  }
+
+=======
+  }
+
+>>>>>>> 586e5e7931acd72138704ee5ad7dc598f420c844
   updatePin(e, inTime) {
+    console.log("******update pin******");
     if (inTime) {
       let newState = Object.assign({}, this.state);
       newState.pins[e.target.id - 1].round = false;
