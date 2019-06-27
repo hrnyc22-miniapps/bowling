@@ -56,9 +56,13 @@ class Board extends React.Component {
     let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
     let newState = Object.assign({}, this.state);
     newState.pins[selectedPinNumber - 1].target = true;
-    newState.timer = newState.timer - 250;
-    console.log(newState.timer);
-    this.setState(newState);
+    this.setState(newState, () => {
+      this.setState({
+        timer: this.state.timer - 250
+      }, () => {
+        console.log(this.state.timer)
+      })
+    });
   }
 
   onClickStart() {
