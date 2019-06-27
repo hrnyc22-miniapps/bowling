@@ -27,9 +27,17 @@ class Board extends React.Component {
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
     this.randomPinSelector = this.randomPinSelector.bind(this);
+    this.endRound = this.endRound.bind(this);
   }
 
   componentDidMount() {}
+
+  endRound() {
+    // for (let i = 0; i < this.state.pins.length; i++) {
+    //   if (this.state.pins[i].round === ) {
+    //   }
+    // }
+  }
 
   randomPinSelector() {
     let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
@@ -87,10 +95,11 @@ class Board extends React.Component {
           {this.state.pins.map((pin, i) => {
             return (
               <Pin
-                pin={pin}
-                updatePin={this.updatePin}
-                continueBowling={this.continueBowling}
                 key={i}
+                pin={pin}
+                continueBowling={this.continueBowling}
+                updatePin={this.updatePin}
+                randomPinSelector={this.randomPinSelector}
               />
             );
           })}
