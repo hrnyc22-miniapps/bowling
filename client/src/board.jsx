@@ -212,5 +212,4 @@ class Board extends React.Component {
   }
 }
 
-// export default Board;
-ReactDOM.render(<Board />, document.getElementById("app"));
+export default Board;
