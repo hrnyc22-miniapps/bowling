@@ -121,6 +121,7 @@ class Board extends React.Component {
                 pin={pin}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
+                subRound={this.state.subRound}
               />
             );
           })}
