@@ -26,8 +26,6 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
-    this.randomPinSelector = this.randomPinSelector.bind(this);
-    this.endRound = this.endRound.bind(this);
   }
 
   componentDidMount() {}
