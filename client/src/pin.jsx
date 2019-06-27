@@ -22,31 +22,30 @@ class Pin extends React.Component {
     if (inTime) {
       this.props.continueBowling(e);
       this.props.updatePin(e);
-    } else {
-      this.props.endRound();
     }
   }
 
   render() {
     return (
       <div className="pin-container">
-        {this.props.pin.round && this.props.pin.target ? (
-          <div
-            className="pin-target"
-            id={this.props.pin.pinNumber}
-            onClick={e => {
-              this.onClick(e);
-            }}
-          />
-        ) : (
-          <div
-            className="pin"
-            id={this.props.pin.pinNumber}
-            onClick={e => {
-              this.onClick(e);
-            }}
-          />
-        )}
+        {this.props.pin.round &&
+          (this.props.pin.target ? (
+            <div
+              className="pin-target"
+              id={this.props.pin.pinNumber}
+              onClick={e => {
+                this.onClick(e);
+              }}
+            />
+          ) : (
+            <div
+              className="pin"
+              id={this.props.pin.pinNumber}
+              onClick={e => {
+                this.onClick(e);
+              }}
+            />
+          ))}
       </div>
     );
   }

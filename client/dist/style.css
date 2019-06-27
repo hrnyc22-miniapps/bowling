@@ -12,7 +12,7 @@
 }
 
 .pin-target {
-  background-color: white;
+  background-color: red;
   width: 2vh;
   height: 2vh;
   outline: 2px red;
