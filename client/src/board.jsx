@@ -26,9 +26,21 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
+    this.countPinNumber = this.countPinNumber.bind(this);
   }
 
   componentDidMount() {}
+
+  countPinNumber() {
+    let pinDown = 0;
+    for (let i = 0; i < this.state.pins.length; i++) {
+      if (this.state.pins[i].round === false) {
+        pinDown += 1;
+      }
+    }
+    console.log("Number of Pin Down:", pinDown);
+    return pinDown;
+  }
 
   updatePin(e, inTime) {
     console.log("******update pin******");
@@ -48,16 +60,17 @@ class Board extends React.Component {
   }
 
   continueBowling() {
-    console.log("******continue bowling******");
-    let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
-    let newState = Object.assign({}, this.state);
-    if (newState.pins[randomPinIndex].round === true) {
-      console.log("new target = ", randomPinIndex);
-      newState.pins[randomPinIndex].target = true;
-      this.setState({ newState });
-    } else {
-      this.continueBowling();
+    let leftPin = [];
+    for (let i = 0; i < this.state.pins.length; i++) {
+      if (this.state.pins[i].round === true) {
+        leftPin.push(this.state.pins[i]);
+      }
     }
+    let randomPinIndex = Math.floor(Math.random() * leftPin.length);
+    let selectedPinNumber = leftPin[randomPinIndex].pinNumber;
+    let newState = Object.assign({}, this.state);
+    newState.pins[selectedPinNumber - 1].target = true;
+    this.setState({ newState });
   }
 
   onClickStart() {
@@ -65,11 +78,11 @@ class Board extends React.Component {
       this.setState(
         {
           round: 1,
-          subRound: "first"
+          subRound: 1
         },
         () => this.continueBowling()
       );
-    } else if (this.state.round === 10 && this.state.subRound === "second") {
+    } else if (this.state.round === 10 && this.state.subRound === 2) {
       this.setState({
         pins: [
           { pinNumber: 1, round: true, target: false },
@@ -86,10 +99,10 @@ class Board extends React.Component {
         round: "start",
         subRound: null
       });
-    } else if (this.state.subRound === "first") {
+    } else if (this.state.subRound === 1) {
       this.setState(
         {
-          subRound: "second"
+          subRound: 2
         },
         () => this.continueBowling()
       );
@@ -97,7 +110,7 @@ class Board extends React.Component {
       this.setState(
         {
           round: (this.state.round += 1),
-          subRound: "first",
+          subRound: 1,
           pins: [
             { pinNumber: 1, round: true, target: false },
             { pinNumber: 2, round: true, target: false },
@@ -111,9 +124,7 @@ class Board extends React.Component {
             { pinNumber: 10, round: true, target: false }
           ]
         },
-        () => {
-          this.continueBowling();
-        }
+        () => this.continueBowling()
       );
     }
   }
@@ -134,7 +145,7 @@ class Board extends React.Component {
           })}
         </div>
         <div>
-          {/* <Score pins={{round: this.state.round, subRound: this.state.subRound, numberOfPinDown: this.state.numberOfPinDown}}/> */}
+          {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
           <div>you are on : {this.state.subRound}</div>
         </div>
