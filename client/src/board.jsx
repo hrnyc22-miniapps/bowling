@@ -26,18 +26,24 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
-    this.randomPinSelector = this.randomPinSelector.bind(this);
-    this.endRound = this.endRound.bind(this);
   }
 
   componentDidMount() {}
 
-  updatePin(e) {
-    let newState = Object.assign({}, this.state);
-    newState.pins[e.target.id].round = false;
-    this.setState({
-      newState
-    });
+  updatePin(e, inTime) {
+    if (inTime) {
+      let newState = Object.assign({}, this.state);
+      newState.pins[e.target.id - 1].round = false;
+      this.setState({
+        newState
+      });
+    } else {
+      let newState = Object.assign({}, this.state);
+      newState.pins[e.target.id - 1].target = false;
+      this.setState({
+        newState
+      });
+    }
   }
 
   continueBowling() {
@@ -102,7 +108,9 @@ class Board extends React.Component {
             { pinNumber: 10, round: true, target: false }
           ]
         },
-        () => this.continueBowling()
+        () => {
+          this.continueBowling();
+        }
       );
     }
   }

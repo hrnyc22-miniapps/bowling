@@ -1,27 +1,38 @@
 import React from "react";
 
-let inTime = true;
-
 class Pin extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      inTime: true
+    };
     this.onClick = this.onClick.bind(this);
+    this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
 
   componentDidUpdate(prevProps) {
-    console.log("setting the timeout");
-    setTimeout(() => {
-      console.log("setting time");
-      inTime = false;
-    }, 5000);
+    if (this.props.pin.target) {
+      console.log("setting the timeout");
+      setTimeout(() => {
+        console.log("setting time for pin to false", this.props.pin.pinNumber);
+        this.setState({ inTime: false });
+      }, 2000);
+    }
   }
 
   onClick(e) {
     console.log("you clicked this pin ", e.target.id);
-    if (inTime) {
+    if (this.state.inTime) {
+      console.log("continue bowling");
       this.props.continueBowling(e);
-      this.props.updatePin(e);
+      this.props.updatePin(e, true);
+    } else {
+      console.log("missed it, next round!");
+      this.props.updatePin(e, false);
+      setTimeout(() => {
+        console.log("resetting time for pin to true", this.props.pin.pinNumber);
+        this.setState({ inTime: false });
+      }, 2000);
     }
   }
 
@@ -38,13 +49,7 @@ class Pin extends React.Component {
               }}
             />
           ) : (
-            <div
-              className="pin"
-              id={this.props.pin.pinNumber}
-              onClick={e => {
-                this.onClick(e);
-              }}
-            />
+            <div className="pin" id={this.props.pin.pinNumber} />
           ))}
       </div>
     );
