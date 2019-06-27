@@ -5,35 +5,38 @@
 .pin-container {
   width: 2vh;
   display: inline-block;
-  height: 2vh;
-  margin: 2vh;
+  height: 4vh;
+  margin: 4vh;
 }
 
 .pin {
-  background-color: green;
-  width: 2vh;
-  height: 2vh;
-  outline: 2px grey;
-  box-shadow: 2px black;
+  background-color: white;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 4vh;
+  height: 4vh;
+  box-shadow: 2px 2px black;
 }
 
 .pin-target {
-  background-color: red;
-  width: 2vh;
-  height: 2vh;
-  outline: 2px red;
-  box-shadow: 2px black;
+  background-color: yellow;
+  border-radius: 50%;
+  border: 1px solid black;
+  width: 4vh;
+  height: 4vh;
+  box-shadow: 2px 2px black;
 }
 
 .start {
   text-align: center;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 1px solid black;
   border-collapse: collapse;
   padding: 6px;
   text-align: center;
   margin-top: 10px;
 }
-
