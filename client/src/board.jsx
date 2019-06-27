@@ -32,20 +32,6 @@ class Board extends React.Component {
 
   componentDidMount() {}
 
-  endRound() {
-    // for (let i = 0; i < this.state.pins.length; i++) {
-    //   if (this.state.pins[i].round === ) {
-    //   }
-    // }
-  }
-
-  randomPinSelector() {
-    let randomPinIndex = Math.floor(Math.random() * this.state.pins.length);
-    let newState = Object.assign({}, this.state);
-    newState.pins[randomPinIndex].target = true;
-    this.setState({ newState });
-  }
-
   updatePin(e) {
     let newState = Object.assign({}, this.state);
     newState.pins[e.target.id].round = false;
@@ -67,24 +53,57 @@ class Board extends React.Component {
 
   onClickStart() {
     if (this.state.round === "start") {
-      this.setState({
-        round: 1,
-        subRound: "first"
-      });
+      this.setState(
+        {
+          round: 1,
+          subRound: "first"
+        },
+        () => this.continueBowling()
+      );
     } else if (this.state.round === 10 && this.state.subRound === "second") {
       this.setState({
+        pin: [
+          { pinNumber: 1, round: true, target: false },
+          { pinNumber: 2, round: true, target: false },
+          { pinNumber: 3, round: true, target: false },
+          { pinNumber: 4, round: true, target: false },
+          { pinNumber: 5, round: true, target: false },
+          { pinNumber: 6, round: true, target: false },
+          { pinNumber: 7, round: true, target: false },
+          { pinNumber: 8, round: true, target: false },
+          { pinNumber: 9, round: true, target: false },
+          { pinNumber: 10, round: true, target: false }
+        ],
         round: "start",
         subRound: null
       });
     } else if (this.state.subRound === "first") {
-      this.setState({
-        subRound: "second"
-      });
+      this.setState(
+        {
+          subRound: "second"
+        },
+        () => this.continueBowling()
+      );
     } else {
-      this.setState({
-        round: (this.state.round += 1),
-        subRound: "first"
-      });
+      this.setState(
+        {
+          round: (this.state.round += 1),
+          subRound: "first",
+          pin: [
+            { pinNumber: 1, round: true, target: false },
+            { pinNumber: 2, round: true, target: false },
+            { pinNumber: 3, round: true, target: false },
+            { pinNumber: 4, round: true, target: false },
+            { pinNumber: 5, round: true, target: false },
+            { pinNumber: 6, round: true, target: false },
+            { pinNumber: 7, round: true, target: false },
+            { pinNumber: 8, round: true, target: false },
+            { pinNumber: 9, round: true, target: false },
+            { pinNumber: 10, round: true, target: false }
+          ]
+        },
+        () => this.continueBowling()
+      );
     }
   }
 
@@ -99,13 +118,12 @@ class Board extends React.Component {
                 pin={pin}
                 continueBowling={this.continueBowling}
                 updatePin={this.updatePin}
-                randomPinSelector={this.randomPinSelector}
               />
             );
           })}
         </div>
         <div>
-          {/* <Score pins={{round: this.state.round, subRound: this.state.subRound, number: this.state.numberOfPinDown}}/> */}
+          {/* <Score pins={{round: this.state.round, subRound: this.state.subRound, numberOfPinDown: this.state.numberOfPinDown}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
           <div>you are on : {this.state.subRound}</div>
         </div>
