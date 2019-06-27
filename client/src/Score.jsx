@@ -8,21 +8,6 @@ const Score = () => {
   const [trackStrike, setTrackStrike] = useState(true);
   const [trackSpare, setTrackSpare] = useState(false);
 
-  // let obj1 = {
-  //   board: [{ pinNumber: 1, round: false, target: false },
-  //   { pinNumber: 2, round: false, target: false },
-  //   { pinNumber: 3, round: false, target: false },
-  //   { pinNumber: 4, round: false, target: false },
-  //   { pinNumber: 5, round: false, target: false },
-  //   { pinNumber: 6, round: false, target: false },
-  //   { pinNumber: 7, round: false, target: false },
-  //   { pinNumber: 8, round: false, target: false },
-  //   { pinNumber: 9, round: false, target: false },
-  //   { pinNumber: 10, round: false, target: false }],
-  //   round: 1,
-  //   sub_round: 2,
-  // }
-
   let renderTotalPin = (obj) => {
     let output = {};
     output.round = obj.round;
