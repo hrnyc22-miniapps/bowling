@@ -1,6 +1,6 @@
 module.exports = {
   mode: "development",
-  entry: __dirname + "/client/src/board.jsx",
+  entry: __dirname + "/client/src/score.jsx",
   output: {
     path: __dirname + "/client/dist",
     filename: "bundle.js"
