@@ -15,25 +15,23 @@ class Pin extends React.Component {
       setTimeout(() => {
         console.log("setting time for pin to false", this.props.pin.pinNumber);
         this.setState({ inTime: false });
-      }, 3000);
+      }, this.props.timer);
     }
   }
 
   onClick(e) {
+    console.log("this is the timer props", this.props.timer);
     if (this.state.inTime) {
       console.log("continue bowling");
       this.props.continueBowling(e);
       this.props.updatePin(e, true);
       setTimeout(() => {
         this.setState({ inTime: true });
-      }, 3000);
+      }, this.props.timer);
     } else {
       console.log("missed it, next round!");
       this.props.updatePin(e, false);
-      // setTimeout(() => {
-      //   console.log("resetting time for pin to true", this.props.pin.pinNumber);
       this.setState({ inTime: true });
-      // }, 3000);
     }
   }
 
