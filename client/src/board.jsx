@@ -2,22 +2,24 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Pin from "./pin.jsx";
 
+const board = [
+  { pinNumber: 1, round: true, target: false },
+  { pinNumber: 2, round: true, target: false },
+  { pinNumber: 3, round: true, target: false },
+  { pinNumber: 4, round: true, target: false },
+  { pinNumber: 5, round: true, target: false },
+  { pinNumber: 6, round: true, target: false },
+  { pinNumber: 7, round: true, target: false },
+  { pinNumber: 8, round: true, target: false },
+  { pinNumber: 9, round: true, target: false },
+  { pinNumber: 10, round: true, target: false }
+];
+
 class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pins: [
-        { pinNumber: 1, round: true, target: false },
-        { pinNumber: 2, round: true, target: false },
-        { pinNumber: 3, round: true, target: false },
-        { pinNumber: 4, round: true, target: false },
-        { pinNumber: 5, round: true, target: false },
-        { pinNumber: 6, round: true, target: false },
-        { pinNumber: 7, round: true, target: false },
-        { pinNumber: 8, round: true, target: false },
-        { pinNumber: 9, round: true, target: false },
-        { pinNumber: 10, round: true, target: false }
-      ],
+      pins: board,
       round: "start",
       subRound: null,
       numberOfPinDown: 0
@@ -26,6 +28,7 @@ class Board extends React.Component {
     this.onClickStart = this.onClickStart.bind(this);
     this.updatePin = this.updatePin.bind(this);
     this.continueBowling = this.continueBowling.bind(this);
+<<<<<<< HEAD
     this.countPinNumber = this.countPinNumber.bind(this);
   }
 
@@ -42,6 +45,10 @@ class Board extends React.Component {
     return pinDown;
   }
 
+=======
+  }
+
+>>>>>>> 586e5e7931acd72138704ee5ad7dc598f420c844
   updatePin(e, inTime) {
     console.log("******update pin******");
     if (inTime) {
@@ -84,18 +91,7 @@ class Board extends React.Component {
       );
     } else if (this.state.round === 10 && this.state.subRound === 2) {
       this.setState({
-        pins: [
-          { pinNumber: 1, round: true, target: false },
-          { pinNumber: 2, round: true, target: false },
-          { pinNumber: 3, round: true, target: false },
-          { pinNumber: 4, round: true, target: false },
-          { pinNumber: 5, round: true, target: false },
-          { pinNumber: 6, round: true, target: false },
-          { pinNumber: 7, round: true, target: false },
-          { pinNumber: 8, round: true, target: false },
-          { pinNumber: 9, round: true, target: false },
-          { pinNumber: 10, round: true, target: false }
-        ],
+        pins: board,
         round: "start",
         subRound: null
       });
@@ -111,18 +107,7 @@ class Board extends React.Component {
         {
           round: (this.state.round += 1),
           subRound: 1,
-          pins: [
-            { pinNumber: 1, round: true, target: false },
-            { pinNumber: 2, round: true, target: false },
-            { pinNumber: 3, round: true, target: false },
-            { pinNumber: 4, round: true, target: false },
-            { pinNumber: 5, round: true, target: false },
-            { pinNumber: 6, round: true, target: false },
-            { pinNumber: 7, round: true, target: false },
-            { pinNumber: 8, round: true, target: false },
-            { pinNumber: 9, round: true, target: false },
-            { pinNumber: 10, round: true, target: false }
-          ]
+          pins: board
         },
         () => this.continueBowling()
       );
@@ -147,7 +132,7 @@ class Board extends React.Component {
         <div>
           {/* <Score updateRoundRecords={{round: this.state.round, subRound: this.state.subRound, board: this.state.pins}}/> */}
           <button onClick={this.onClickStart}>{this.state.round}</button>
-          <div>you are on : {this.state.subRound}</div>
+          <div>{this.state.subRound ? "you are on: "+ this.state.subRound : null}</div>
         </div>
       </div>
     );
